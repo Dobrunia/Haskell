@@ -1,8 +1,10 @@
 main :: IO ()
-main = print (sumNumbers 5)
+main = print (sumNumbers 10)
 
 sumNumbers :: Integer -> Integer
 sumNumbers n
-    | n < 0     = error "arg must be positive"
-    | n == 0    = 0
-    | otherwise = n + sumNumbers (n - 1)
+    | n < 0     = error "Argument must be non-negative"
+    | otherwise = go n 0
+  where
+    go 0 acc = acc
+    go n acc = go (n - 1) (acc + n)
